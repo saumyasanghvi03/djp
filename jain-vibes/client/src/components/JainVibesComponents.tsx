@@ -159,6 +159,7 @@ interface PlaylistCardProps {
   description: string;
   trackCount: number;
   duration: string;
+  tracks?: string[];
   onClick?: () => void;
 }
 
@@ -167,11 +168,12 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({
   description,
   trackCount,
   duration,
+  tracks,
   onClick,
 }) => {
   return (
     <div
-      className="card-spiritual cursor-pointer group"
+      className="card-spiritual cursor-pointer group h-full flex flex-col"
       onClick={onClick}
     >
       <div className="flex items-start justify-between mb-4">
@@ -189,7 +191,21 @@ export const PlaylistCard: React.FC<PlaylistCardProps> = ({
           className="flex-shrink-0 group-hover:scale-110 transition-transform duration-500"
         />
       </div>
-      <div className="flex justify-between text-xs pt-4 border-t" style={{ borderColor: 'rgb(230, 230, 225)' }}>
+
+      {tracks && tracks.length > 0 && (
+        <div className="mb-4 flex-1">
+          <div className="h-px w-full mb-3" style={{ backgroundColor: 'rgb(230, 230, 225)' }} />
+          <ul className="space-y-2">
+            {tracks.map((track, i) => (
+              <li key={i} className="text-sm flex items-center gap-2" style={{ color: 'rgb(120, 120, 115)' }}>
+                <span className="text-xs opacity-50">{i + 1}.</span> {track}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="flex justify-between text-xs pt-4 border-t mt-auto" style={{ borderColor: 'rgb(230, 230, 225)' }}>
         <span style={{ color: 'rgb(150, 150, 150)' }}>{trackCount} tracks</span>
         <span style={{ color: 'rgb(150, 150, 150)' }}>{duration}</span>
       </div>

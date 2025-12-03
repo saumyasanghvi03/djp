@@ -99,6 +99,7 @@ export default function Music() {
                 description={playlist.description}
                 trackCount={playlist.trackCount}
                 duration={playlist.duration}
+                tracks={playlist.tracks}
               />
             ))}
           </div>
