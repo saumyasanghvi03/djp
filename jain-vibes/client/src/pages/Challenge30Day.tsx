@@ -314,6 +314,53 @@ export default function Challenge30Day() {
         </div>
       </section>
 
+      {/* ===== RECOMMENDED MUSIC ===== */}
+      <section className="section-spacing bg-white">
+        <div className="container">
+          <SectionHeader
+            title="Recommended Music"
+            subtitle="Enhance your practice with curated playlists"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
+              <div className="text-4xl mb-4">🌅</div>
+              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Morning Calm</h4>
+              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Start each day with peaceful devotion</p>
+              <button
+                onClick={() => window.open('http://localhost:8501', '_blank')}
+                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
+              >
+                <Music size={16} /> Play
+              </button>
+            </div>
+
+            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
+              <div className="text-4xl mb-4">🧘</div>
+              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Meditation Flow</h4>
+              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Deep spiritual practice music</p>
+              <button
+                onClick={() => window.open('http://localhost:8501', '_blank')}
+                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
+              >
+                <Music size={16} /> Play
+              </button>
+            </div>
+
+            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
+              <div className="text-4xl mb-4">🌙</div>
+              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Night Calm Down</h4>
+              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Peaceful evening rituals</p>
+              <button
+                onClick={() => window.open('http://localhost:8501', '_blank')}
+                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
+              >
+                <Music size={16} /> Play
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== CLOSING CTA ===== */}
       <section
         className="section-spacing text-center text-white"
