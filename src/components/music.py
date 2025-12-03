@@ -26,8 +26,12 @@ def get_thumbnail(url):
     return None
 
 def render_music():
-    st.header("Pick Your Mood — I’ll choose your music.")
-    st.caption("Your vibe creates your playlist.")
+    st.header("Jain Music Engine")
+    st.markdown("---")
+    
+    st.subheader("How It Works")
+    st.write("Select your current mood or desired state, and our engine curates a specific block of Jain devotional tracks to match. No searching required—just pure vibes.")
+    st.markdown("---")
 
     for playlist in MUSIC_DATA["playlist_blocks"]:
         st.subheader(playlist["title"])

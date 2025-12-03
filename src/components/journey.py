@@ -2,7 +2,22 @@ import streamlit as st
 from src.data.challenges import CHALLENGES
 
 def render_journey():
-    st.header("Your Healing Progress")
+    st.header("30-Day Healing Journey")
+    st.markdown("---")
+
+    st.subheader("Overview")
+    st.write("A structured journey to reset your mind and soul. Over 30 days, you will engage in small, meaningful tasks that cumulatively lead to a significant shift in your perspective and peace of mind.")
+
+    with st.expander("📅 Weekly Themes", expanded=False):
+        st.markdown("""
+        *   **Week 1**: Foundation & Cleansing
+        *   **Week 2**: Gratitude & Connection
+        *   **Week 3**: Mindfulness & Discipline
+        *   **Week 4**: Integration & Growth
+        """)
+    
+    st.markdown("---")
+    st.subheader("Your Progress")
     # Button to advance day progress
     if st.button("Advance Day"):
         max_day = len(CHALLENGES["challenge"])

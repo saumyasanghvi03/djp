@@ -8,9 +8,11 @@ def render_sos():
         st.session_state.sos_step = 0
 
     steps = [
-        {"title": "Breathe with me", "desc": "Inhale for 4... Hold for 7... Exhale for 8."},
-        {"title": "Grounding Audio", "desc": "Playing Navkar Mantra (Soothing)...\n\n[Listen on Spotify](https://open.spotify.com/track/2ptdFDtOqx4olPDq5bLiE8)"},
-        {"title": "You are Safe", "desc": "Call a loved one if you need to talk."}
+        {"title": "Breathing", "desc": "Follow the visual guide to slow down your breath (Inhale 4s, Hold 7s, Exhale 8s)."},
+        {"title": "Short Chant Audio", "desc": "Listen to the soothing Navkar Mantra to shift your focus.\n\n[Listen on Spotify](https://open.spotify.com/track/2ptdFDtOqx4olPDq5bLiE8)"},
+        {"title": "Grounding", "desc": "Simple physical techniques to reconnect with the present moment."},
+        {"title": "Reassurance", "desc": "Affirmations to remind you that you are safe and supported."},
+        {"title": "Continue with Coach", "desc": "Seamlessly transition to a chat with the AI for further support."}
     ]
 
     # Main SOS Button (Step 0)
@@ -24,7 +26,6 @@ def render_sos():
         return # Exit the function after rendering the initial button
 
     # Adjust index for steps after initial button
-    # Step 1 -> Index 0, Step 2 -> Index 1, Step 3 -> Index 2
     current_step_index = st.session_state.sos_step - 1
     if current_step_index < 0: current_step_index = 0
     if current_step_index >= len(steps): current_step_index = len(steps) - 1
@@ -33,15 +34,15 @@ def render_sos():
 
     st.markdown(f"<h2 style='text-align: center;'>{current_step['title']}</h2>", unsafe_allow_html=True)
     
-    # Visual Breathing Circle (CSS Animation)
-    if st.session_state.sos_step == 1: 
+    # Visual Breathing Circle (CSS Animation) - Only for Step 1 (Breathing)
+    if current_step['title'] == "Breathing": 
         st.markdown("""
         <div style="display: flex; justify-content: center; margin: 40px 0;">
             <div style="
                 width: 150px; height: 150px; 
                 background-color: #fecdd3; 
                 border-radius: 50%; 
-                animation: breathe 4s infinite ease-in-out;
+                animation: breathe 19s infinite ease-in-out; /* 4+7+8 = 19s cycle */
                 display: flex; align-items: center; justify-content: center;
             ">
                 <div style="width: 100px; height: 100px; background-color: #fb7185; border-radius: 50%;"></div>
@@ -49,8 +50,9 @@ def render_sos():
         </div>
         <style>
             @keyframes breathe {
-                0%, 100% { transform: scale(1); opacity: 0.8; }
-                50% { transform: scale(1.2); opacity: 0.4; }
+                0%, 20% { transform: scale(1.3); opacity: 0.8; } /* Inhale 4s (approx 20%) */
+                20%, 55% { transform: scale(1.3); opacity: 0.8; } /* Hold 7s (approx 35%) */
+                55%, 100% { transform: scale(1); opacity: 0.4; } /* Exhale 8s (approx 45%) */
             }
         </style>
         """, unsafe_allow_html=True)
@@ -72,7 +74,7 @@ def render_sos():
                 st.session_state.sos_step += 1
                 st.rerun()
         else:
-            if st.button("Finish ✅", use_container_width=True):
-                st.session_state.sos_step = 0 # Reset to 0 to show "Calm My Mind" again
-                st.success("You completed the ritual.")
+            if st.button("Chat with Coach 💬", use_container_width=True):
+                st.session_state.active_tab = "Coach"
+                st.session_state.sos_step = 0 # Reset
                 st.rerun()
