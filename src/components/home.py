@@ -1,56 +1,82 @@
 import streamlit as st
-from src.data.challenges import CHALLENGES
 
 def render_home():
-    st.markdown("<h1 style='text-align: center; color: #4F46E5;'>Your Mind. Your Peace. Your Path.</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; color: #6B7280;'>How are you feeling today?</p>", unsafe_allow_html=True)
+    # Hero Section
+    st.markdown("<h1 style='text-align: center; font-family: serif; color: #4a4a4a;'>Jain Vibes</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #666; font-weight: 300;'>A Jain Emotional Wellness Companion for Today's Generation</h3>", unsafe_allow_html=True)
+    st.markdown("---")
 
-    # Mood Check-in
-    st.subheader("How are you feeling?")
-    col1, col2, col3, col4 = st.columns(4)
+    # Intro
+    st.markdown("""
+    <div style='text-align: center; padding: 20px; background-color: #f9f9f9; border-radius: 10px; margin-bottom: 20px;'>
+        <p style='font-size: 1.1em; line-height: 1.6;'>
+            Welcome to <b>Jain Vibes</b>, a sanctuary where ancient Jain wisdom meets modern emotional wellness. 
+            In a world of constant noise and anxiety, we provide a space for grounding, healing, and inner peace. 
+            Our platform is designed specifically for Gen-Z, offering tools that resonate with your life while staying true to the timeless principles of 
+            <b>Ahimsa</b> (Non-violence), <b>Satya</b> (Truth), and <b>Aparigraha</b> (Non-attachment).
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Core Pillars
+    st.subheader("Core Pillars")
+    col1, col2 = st.columns(2)
     with col1:
-        if st.button("☀️ Happy"):
-            st.toast("Glad to hear that!")
-    with col2:
-        if st.button("💨 Anxious"):
-            st.session_state.active_tab = "Coach"
-            st.rerun()
-    with col3:
-        if st.button("🔥 Angry"):
-            st.session_state.active_tab = "SOS"
-            st.rerun()
-    with col4:
-        if st.button("💧 Sad"):
-            st.session_state.active_tab = "Coach"
-            st.session_state.active_persona = "coach" # Ensure supportive persona
-            st.rerun()
-
-    # Daily Challenge
-    current_day = 4
-    today_challenge = next((c for c in CHALLENGES["challenge"] if c["day"] == current_day), None)
-    
-    if today_challenge:
-        st.markdown("---")
-        st.markdown(f"""
-        <div style="background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 20px; border-radius: 15px; color: white;">
-            <small>Day {current_day} of 30</small>
-            <h3>{today_challenge['title']}</h3>
-            <p>{today_challenge.get('coach_note', '')}</p>
+        st.markdown("""
+        <div style='padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px;'>
+            <h4>🕊️ Jain Wisdom</h4>
+            <p style='font-size: 0.9em; color: #555;'>Timeless teachings adapted for modern mental health challenges.</p>
         </div>
         """, unsafe_allow_html=True)
-        
-        if st.button("Start Today's Tasks", use_container_width=True):
-            st.session_state.active_tab = "Journey"
+        st.markdown("""
+        <div style='padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px;'>
+            <h4>⚖️ Emotional Balance</h4>
+            <p style='font-size: 0.9em; color: #555;'>Tools to navigate anxiety, stress, and relationships.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    with col2:
+        st.markdown("""
+        <div style='padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px;'>
+            <h4>🎵 Music Therapy</h4>
+            <p style='font-size: 0.9em; color: #555;'>Curated devotional tracks to shift your energy instantly.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.markdown("""
+        <div style='padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px;'>
+            <h4>🤖 Compassionate AI</h4>
+            <p style='font-size: 0.9em; color: #555;'>An empathetic coach available 24/7 to listen and guide.</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # Showcases
+    st.subheader("Explore Our Tools")
+    
+    with st.expander("🤖 AI Coach Modes", expanded=True):
+        st.write("Explore our diverse AI personas designed to meet you where you are. Whether you need a supportive Friend, a wise Spiritual Guide, or a gentle Romantic Mode, our AI adapts to your emotional needs.")
+        if st.button("Try the AI Coach", key="home_coach_btn"):
+            st.session_state.active_tab = "Coach"
             st.rerun()
 
-    # Quick Actions
+    with st.expander("🎵 Jain Music Engine"):
+        st.write("Discover the power of sound with our mood-based music engine. From Morning Calm to High-Energy Bhakti, select your vibe and let the music heal you.")
+
+    with st.expander("🗺️ 30-Day Healing Journey"):
+        st.write("Embark on a transformative 30-day challenge. Each day brings a new task focused on gratitude, mindfulness, or connection, helping you build lasting spiritual habits.")
+
     st.markdown("---")
+    
+    # Quick Links
     c1, c2 = st.columns(2)
     with c1:
-        if st.button("📚 Exam Mode", use_container_width=True):
+        if st.button("Start Now", use_container_width=True, type="primary"):
             st.session_state.active_tab = "Coach"
             st.rerun()
     with c2:
-        if st.button("🆘 SOS Calm", use_container_width=True):
-            st.session_state.active_tab = "SOS"
+        if st.button("Try the AI Coach", use_container_width=True):
+            st.session_state.active_tab = "Coach"
             st.rerun()
+
+    # Subdomain Integration
+    st.info("🌐 **Access the Full App**: Jain Vibes is also available as a dedicated web application. Experience the full suite of tools at **jainvibes.example.com**.")
