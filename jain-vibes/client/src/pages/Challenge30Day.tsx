@@ -15,19 +15,19 @@ import { Check, Music } from 'lucide-react';
 interface ChallengeDayCardProps {
   day: number;
   title: string;
-  ritual: string;
+  tasks: string[];
   completed?: boolean;
 }
 
 const ChallengeDayCard: React.FC<ChallengeDayCardProps> = ({
   day,
   title,
-  ritual,
+  tasks,
   completed = false,
 }) => {
   return (
     <div
-      className="card-spiritual relative overflow-hidden"
+      className="card-spiritual relative overflow-hidden h-full"
       style={{
         borderLeft: `4px solid ${completed ? 'rgb(223, 196, 158)' : 'rgb(230, 230, 225)'}`,
       }}
@@ -40,12 +40,17 @@ const ChallengeDayCard: React.FC<ChallengeDayCardProps> = ({
           {day}
         </div>
         <div className="flex-1">
-          <h4 className="font-semibold" style={{ color: 'rgb(95, 90, 85)' }}>
+          <h4 className="font-semibold mb-2" style={{ color: 'rgb(95, 90, 85)' }}>
             {title}
           </h4>
-          <p className="text-sm mt-1" style={{ color: 'rgb(150, 150, 150)' }}>
-            {ritual}
-          </p>
+          <ul className="space-y-1">
+            {tasks.map((task, i) => (
+              <li key={i} className="text-sm flex items-start gap-2" style={{ color: 'rgb(150, 150, 150)' }}>
+                <span className="mt-1.5 w-1 h-1 rounded-full bg-gray-400 flex-shrink-0" />
+                <span>{task}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         {completed && <Check size={16} className="text-green-500" />}
       </div>
@@ -88,25 +93,22 @@ export default function Challenge30Day() {
     },
   ];
 
-  const dailyRituals = [
-    'Day 1: Morning Navkar & Intention Setting',
-    'Day 2: 10-Minute Mindfulness Meditation',
-    'Day 3: Gratitude Journaling (3 things)',
-    'Day 4: Ahimsa in Speech (Kind words only)',
-    'Day 5: Digital Detox (1 hour before bed)',
-    'Day 6: Mindful Eating Practice',
-    'Day 7: Evening Forgiveness (Pratikraman)',
-    'Day 8: Nature Walk & Connection',
-    'Day 9: Act of Service (Seva)',
-    'Day 10: Deep Breathing (Pranayama)',
+  const challengeData = [
+    { day: 1, title: "Navkar Reset", tasks: ["27 Navkars", "Navkar Mantra (Calm)", "Journal: What do I want to heal?"] },
+    { day: 2, title: "Purity Shift", tasks: ["Avoid potato/onion/garlic for 1 meal", "Neminath playlist", "Act of kindness"] },
+    { day: 3, title: "Strength Build", tasks: ["SOS breathing", "Nemras Soft", "Write 3 things to detach from"] },
+    // Placeholder for remaining days to maintain layout
+    ...Array.from({ length: 27 }, (_, i) => ({
+      day: i + 4,
+      title: `Day ${i + 4} Ritual`,
+      tasks: ["Morning Meditation", "Read Jain Wisdom", "Evening Reflection"]
+    }))
   ];
 
-  const allDays = Array.from({ length: 30 }, (_, i) => ({
-    day: i + 1,
-    week: Math.floor(i / 7) + 1,
-    title: `Day ${i + 1} Ritual`,
-    ritual: dailyRituals[i % dailyRituals.length],
-    completed: i < 5,
+  const allDays = challengeData.map(d => ({
+    ...d,
+    week: Math.floor((d.day - 1) / 7) + 1,
+    completed: d.day < 2 // Mark first day as completed for demo
   }));
 
   return (
@@ -161,10 +163,14 @@ export default function Challenge30Day() {
             subtitle="Essential practices for each day of your journey"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {dailyRituals.map((ritual, index) => (
+            {/* Displaying first few days as examples in this section if needed, or removing if redundant with timeline */}
+            {/* For now, keeping a subset or removing this section if timeline covers it. 
+                 The original design had a separate "Daily Rituals" list. 
+                 Let's keep it but use the new data structure. */}
+            {challengeData.slice(0, 4).map((day, index) => (
               <div
                 key={index}
-                className="card-spiritual flex items-center gap-4"
+                className="card-spiritual flex items-start gap-4"
               >
                 <div
                   className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
@@ -172,9 +178,12 @@ export default function Challenge30Day() {
                 >
                   ✓
                 </div>
-                <p style={{ color: 'rgb(95, 90, 85)' }} className="font-medium">
-                  {ritual}
-                </p>
+                <div>
+                  <p style={{ color: 'rgb(95, 90, 85)' }} className="font-medium">
+                    {day.title}
+                  </p>
+                  <p className="text-sm text-gray-500">{day.tasks.join(", ")}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -210,7 +219,7 @@ export default function Challenge30Day() {
                         key={day.day}
                         day={day.day}
                         title={day.title}
-                        ritual={day.ritual}
+                        tasks={day.tasks}
                         completed={day.completed}
                       />
                     ))}
@@ -221,63 +230,47 @@ export default function Challenge30Day() {
         </div>
       </section>
 
-      {/* ===== MUSIC SUGGESTIONS ===== */}
-      <section className="section-spacing" style={{ backgroundColor: 'rgb(250, 250, 245)' }}>
+      {/* ===== RECOMMENDED MUSIC ===== */}
+      <section className="section-spacing bg-white">
         <div className="container">
           <SectionHeader
             title="Recommended Music"
             subtitle="Enhance your practice with curated playlists"
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="card-spiritual text-center">
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
-                style={{ backgroundColor: 'rgb(223, 196, 158)' }}
+            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
+              <div className="text-4xl mb-4">🌅</div>
+              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Morning Calm</h4>
+              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Start each day with peaceful devotion</p>
+              <button
+                onClick={() => handleNavigate('/app')}
+                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
               >
-                🌅
-              </div>
-              <h4 className="font-semibold mb-2" style={{ color: 'rgb(95, 90, 85)' }}>
-                Morning Calm
-              </h4>
-              <p style={{ color: 'rgb(150, 150, 150)' }} className="text-sm mb-4">
-                Start each day with peaceful devotion
-              </p>
-              <button className="button-spiritual text-sm w-full">
-                Play
+                <Music size={16} /> Play
               </button>
             </div>
-            <div className="card-spiritual text-center">
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
-                style={{ backgroundColor: 'rgb(223, 196, 158)' }}
+
+            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
+              <div className="text-4xl mb-4">🧘</div>
+              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Meditation Flow</h4>
+              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Deep spiritual practice music</p>
+              <button
+                onClick={() => handleNavigate('/app')}
+                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
               >
-                🧘
-              </div>
-              <h4 className="font-semibold mb-2" style={{ color: 'rgb(95, 90, 85)' }}>
-                Meditation Flow
-              </h4>
-              <p style={{ color: 'rgb(150, 150, 150)' }} className="text-sm mb-4">
-                Deep spiritual practice music
-              </p>
-              <button className="button-spiritual text-sm w-full">
-                Play
+                <Music size={16} /> Play
               </button>
             </div>
-            <div className="card-spiritual text-center">
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
-                style={{ backgroundColor: 'rgb(223, 196, 158)' }}
+
+            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
+              <div className="text-4xl mb-4">🌙</div>
+              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Night Calm Down</h4>
+              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Peaceful evening rituals</p>
+              <button
+                onClick={() => handleNavigate('/app')}
+                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
               >
-                🌙
-              </div>
-              <h4 className="font-semibold mb-2" style={{ color: 'rgb(95, 90, 85)' }}>
-                Night Calm Down
-              </h4>
-              <p style={{ color: 'rgb(150, 150, 150)' }} className="text-sm mb-4">
-                Peaceful evening rituals
-              </p>
-              <button className="button-spiritual text-sm w-full">
-                Play
+                <Music size={16} /> Play
               </button>
             </div>
           </div>
@@ -355,53 +348,6 @@ export default function Challenge30Day() {
                   Experience profound personal transformation and awakening
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== RECOMMENDED MUSIC ===== */}
-      <section className="section-spacing bg-white">
-        <div className="container">
-          <SectionHeader
-            title="Recommended Music"
-            subtitle="Enhance your practice with curated playlists"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
-              <div className="text-4xl mb-4">🌅</div>
-              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Morning Calm</h4>
-              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Start each day with peaceful devotion</p>
-              <button
-                onClick={() => handleNavigate('/app')}
-                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
-              >
-                <Music size={16} /> Play
-              </button>
-            </div>
-
-            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
-              <div className="text-4xl mb-4">🧘</div>
-              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Meditation Flow</h4>
-              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Deep spiritual practice music</p>
-              <button
-                onClick={() => handleNavigate('/app')}
-                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
-              >
-                <Music size={16} /> Play
-              </button>
-            </div>
-
-            <div className="p-6 rounded-2xl border transition-all hover:shadow-lg" style={{ borderColor: 'rgb(230, 230, 225)', backgroundColor: 'rgb(250, 250, 245)' }}>
-              <div className="text-4xl mb-4">🌙</div>
-              <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Night Calm Down</h4>
-              <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Peaceful evening rituals</p>
-              <button
-                onClick={() => handleNavigate('/app')}
-                className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
-              >
-                <Music size={16} /> Play
-              </button>
             </div>
           </div>
         </div>

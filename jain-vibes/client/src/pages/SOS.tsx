@@ -138,16 +138,16 @@ export default function SOS() {
                 </p>
                 <div className="space-y-2">
                   <p style={{ color: 'rgb(150, 150, 150)' }}>
-                    <strong>India (Tele MANAS):</strong> 14416 | Available 24/7
+                    <strong>24/7 India Mental Health Support</strong><br />
+                    Tele MANAS (Government of India): 14416
                   </p>
                   <p style={{ color: 'rgb(150, 150, 150)' }}>
-                    <strong>Vandrevala Foundation:</strong> +91 9999 666 555
+                    <strong>NGO Helplines</strong><br />
+                    Vandrevala Foundation: +91 9999 666 555
                   </p>
                   <p style={{ color: 'rgb(150, 150, 150)' }}>
-                    <strong>US / International:</strong> 988 (US) | findahelpline.com
-                  </p>
-                  <p style={{ color: 'rgb(150, 150, 150)' }}>
-                    <strong>Emergency:</strong> Call 112 (India) or 911 (US)
+                    <strong>Emergency Services</strong><br />
+                    For any immediate danger: Call 112
                   </p>
                 </div>
               </div>

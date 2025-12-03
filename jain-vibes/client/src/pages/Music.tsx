@@ -24,45 +24,45 @@ export default function Music() {
   const playlists = [
     {
       title: 'Morning Calm',
-      description: 'Start your day with peaceful devotion and spiritual awakening',
-      trackCount: 12,
-      duration: '45 min',
-      tracks: ['Navkar Mantra', 'Lotus Meditation', 'Dawn Chant', 'Morning Blessing'],
+      description: 'Start your day with purity and grounding.',
+      trackCount: 3,
+      duration: '15 min',
+      tracks: ['Navkar Mantra - RSJ', 'Nem Aavshe - Vilesh Jain', 'Parmatma Bani Jase Maro Aatma'],
     },
     {
-      title: 'Focus and Study',
-      description: 'Enhance concentration with spiritual music for deep work',
-      trackCount: 15,
-      duration: '60 min',
-      tracks: ['Concentration Flow', 'Mind Clarity', 'Study Blessing', 'Focus Mantra'],
+      title: 'Focus / Study',
+      description: 'LoFi-style Jain chants for study and deadlines.',
+      trackCount: 3,
+      duration: '12 min',
+      tracks: ['Navkar LoFi', 'Namami Nemi (Soft)', 'Chowk Puravo Calm Mix'],
     },
     {
-      title: 'Girnar and Neminath Devotion',
-      description: 'Sacred mountain chants honoring Girnar and Lord Neminath',
-      trackCount: 10,
-      duration: '40 min',
-      tracks: ['Girnar Hymn', 'Neminath Prayer', 'Mountain Echo', 'Sacred Peak'],
+      title: 'Girnar & Neminath Devotion',
+      description: 'High-bhakti, high-intensity devotional power.',
+      trackCount: 3,
+      duration: '18 min',
+      tracks: ['Girnare Shree Prabhu Nem Che', 'Rome Rome Nemi No', 'Nemras'],
     },
     {
-      title: 'Bhajan Club',
-      description: 'Uplifting devotional songs for spiritual joy and celebration',
-      trackCount: 14,
-      duration: '55 min',
-      tracks: ['Joy Bhajan', 'Celebration Chant', 'Devotional Song', 'Spiritual Dance'],
+      title: 'Bhajan Clubbing',
+      description: 'High-energy spiritual tracks for walks & vibes.',
+      trackCount: 3,
+      duration: '14 min',
+      tracks: ['Jhume Re Jhume Anande', 'Musafari', 'Radha Se Kanha Saiyaara'],
     },
     {
       title: 'Aadinath Grounding',
-      description: 'Root yourself with ancient chants of the first Tirthankara',
-      trackCount: 11,
-      duration: '50 min',
-      tracks: ['Aadinath Prayer', 'Root Mantra', 'Earth Connection', 'Grounding Chant'],
+      description: 'Gentle, emotional, father-like devotion.',
+      trackCount: 3,
+      duration: '16 min',
+      tracks: ['Vhala Aadinath', 'Jeni Kiki Kali Che', 'O Mara Rupala Bhagwan'],
     },
     {
       title: 'Night Calm Down',
-      description: 'Wind down peacefully with soothing mantras and night rituals',
-      trackCount: 13,
-      duration: '52 min',
-      tracks: ['Evening Prayer', 'Sleep Meditation', 'Night Blessing', 'Rest Mantra'],
+      description: 'End your day with softness & surrender.',
+      trackCount: 3,
+      duration: '20 min',
+      tracks: ['Nemras Soft Mix', 'Chowk Puravo', 'Dur Dur Thi Tara Darbare'],
     },
   ];
 
@@ -200,8 +200,8 @@ export default function Music() {
       <section className="section-spacing" style={{ backgroundColor: 'rgb(250, 250, 245)' }}>
         <div className="container text-center">
           <SectionHeader
-            title="Listen Everywhere"
-            subtitle="Access Jain Vibes music on your favorite platforms"
+            title="Pick Your Mood"
+            subtitle="I’ll choose your music."
           />
           <div className="flex flex-wrap gap-4 justify-center">
             <button className="button-spiritual">

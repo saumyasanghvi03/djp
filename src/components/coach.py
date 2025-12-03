@@ -102,7 +102,20 @@ def render_coach():
             # 1. SAFETY INTERCEPTOR (Hardcoded)
             if selected_persona_id == "prevention":
                 time.sleep(1) # Slow down pace
-                safety_response = "I’m with you. Your safety matters most right now. Let’s slow down your breath together. If you feel in danger, please reach out to a helpline immediately."
+                safety_response = """**Crisis Safe Mode (India-Only Version)**
+
+If you are experiencing a mental health crisis or having thoughts of self-harm, please reach out to professional help immediately.
+
+**24/7 India Mental Health Support**
+*   **Tele MANAS (Government of India):** 14416
+
+**NGO Helplines**
+*   **Vandrevala Foundation:** +91 9999 666 555
+
+**Emergency Services**
+*   **For any immediate danger:** Call 112
+
+Your safety is the highest priority. Reaching out to a trained professional can make a meaningful difference. Stay with someone you trust and seek support right away."""
                 message_placeholder.markdown(safety_response)
                 st.session_state.messages.append({"role": "assistant", "content": safety_response})
                 return
