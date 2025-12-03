@@ -12,6 +12,7 @@ import Challenge30Day from "./pages/Challenge30Day";
 import SOS from "./pages/SOS";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import StreamlitApp from "./pages/StreamlitApp";
 
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
       <Route path={"/sos"} component={SOS} />
       <Route path={"/about"} component={About} />
       <Route path={"/contact"} component={Contact} />
+      <Route path={"/app"} component={StreamlitApp} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -41,7 +43,7 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider
         defaultTheme="light"
-        // switchable
+      // switchable
       >
         <TooltipProvider>
           <Toaster />

@@ -15,6 +15,11 @@ import {
 export default function Coach() {
   const [, navigate] = useLocation();
 
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   const coachModes = [
     {
       name: 'Friendly Mode',
@@ -233,16 +238,16 @@ export default function Coach() {
         style={{ backgroundColor: 'rgb(115, 55, 55)' }}
       >
         <div className="container">
-          <h2 className="text-white mb-4">Choose Your Coach Today</h2>
+          <h2 className="text-white mb-4">Ready to Meet Your Guide?</h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
-            Find the perfect coaching mode to support your emotional wellness and spiritual growth.
+            Start a conversation today and experience the wisdom of Jain teachings tailored to your life.
           </p>
           <button
-            onClick={() => window.open('http://localhost:8501', '_blank')}
+            onClick={() => handleNavigate('/app')}
             className="px-8 py-4 rounded-xl font-medium transition-all duration-500 bg-white"
             style={{ color: 'rgb(115, 55, 55)' }}
           >
-            Launch Coach
+            Launch AI Coach
           </button>
         </div>
       </section>

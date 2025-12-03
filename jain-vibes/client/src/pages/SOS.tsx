@@ -17,6 +17,11 @@ export default function SOS() {
   const [, navigate] = useLocation();
   const [sosActive, setSosActive] = React.useState(false);
 
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   const sosSteps = [
     {
       step: 1,
@@ -147,6 +152,14 @@ export default function SOS() {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="text-center mt-12">
+            <button
+              onClick={() => handleNavigate('/app')}
+              className="button-spiritual"
+            >
+              Start Guided SOS Flow
+            </button>
           </div>
         </div>
       </section>

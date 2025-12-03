@@ -7,13 +7,59 @@
 import { useLocation } from 'wouter';
 import {
   HeroSection,
-  ChallengeDayCard,
   SectionHeader,
   Footer,
 } from '@/components/JainVibesComponents';
+import { Check, Music } from 'lucide-react';
+
+interface ChallengeDayCardProps {
+  day: number;
+  title: string;
+  ritual: string;
+  completed?: boolean;
+}
+
+const ChallengeDayCard: React.FC<ChallengeDayCardProps> = ({
+  day,
+  title,
+  ritual,
+  completed = false,
+}) => {
+  return (
+    <div
+      className="card-spiritual relative overflow-hidden"
+      style={{
+        borderLeft: `4px solid ${completed ? 'rgb(223, 196, 158)' : 'rgb(230, 230, 225)'}`,
+      }}
+    >
+      <div className="flex items-start gap-4">
+        <div
+          className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-semibold text-white"
+          style={{ backgroundColor: completed ? 'rgb(223, 196, 158)' : 'rgb(200, 200, 200)' }}
+        >
+          {day}
+        </div>
+        <div className="flex-1">
+          <h4 className="font-semibold" style={{ color: 'rgb(95, 90, 85)' }}>
+            {title}
+          </h4>
+          <p className="text-sm mt-1" style={{ color: 'rgb(150, 150, 150)' }}>
+            {ritual}
+          </p>
+        </div>
+        {completed && <Check size={16} className="text-green-500" />}
+      </div>
+    </div>
+  );
+};
 
 export default function Challenge30Day() {
   const [, navigate] = useLocation();
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
 
   const weeklyThemes = [
     {
@@ -327,7 +373,7 @@ export default function Challenge30Day() {
               <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Morning Calm</h4>
               <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Start each day with peaceful devotion</p>
               <button
-                onClick={() => window.open('http://localhost:8501', '_blank')}
+                onClick={() => handleNavigate('/app')}
                 className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
               >
                 <Music size={16} /> Play
@@ -339,7 +385,7 @@ export default function Challenge30Day() {
               <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Meditation Flow</h4>
               <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Deep spiritual practice music</p>
               <button
-                onClick={() => window.open('http://localhost:8501', '_blank')}
+                onClick={() => handleNavigate('/app')}
                 className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
               >
                 <Music size={16} /> Play
@@ -351,7 +397,7 @@ export default function Challenge30Day() {
               <h4 className="font-semibold text-lg mb-2" style={{ color: 'rgb(95, 90, 85)' }}>Night Calm Down</h4>
               <p className="text-sm mb-4" style={{ color: 'rgb(150, 150, 150)' }}>Peaceful evening rituals</p>
               <button
-                onClick={() => window.open('http://localhost:8501', '_blank')}
+                onClick={() => handleNavigate('/app')}
                 className="button-spiritual text-sm w-full flex items-center justify-center gap-2"
               >
                 <Music size={16} /> Play
@@ -372,7 +418,7 @@ export default function Challenge30Day() {
             Commit to 30 days of spiritual practice and witness the profound changes in your life.
           </p>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => handleNavigate('/app')}
             className="px-8 py-4 rounded-xl font-medium transition-all duration-500 bg-white"
             style={{ color: 'rgb(115, 55, 55)' }}
           >

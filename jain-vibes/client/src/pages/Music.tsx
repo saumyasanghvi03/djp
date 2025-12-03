@@ -16,6 +16,11 @@ import { Music as MusicIcon, Play } from 'lucide-react';
 export default function Music() {
   const [, navigate] = useLocation();
 
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   const playlists = [
     {
       title: 'Morning Calm',
@@ -225,7 +230,7 @@ export default function Music() {
             Let the power of Jain devotional music guide you toward peace, clarity, and spiritual awakening.
           </p>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/app')}
             className="px-8 py-4 rounded-xl font-medium transition-all duration-500 bg-white"
             style={{ color: 'rgb(115, 55, 55)' }}
           >

@@ -30,6 +30,7 @@ export default function Home() {
 
   const handleNavigate = (path: string) => {
     navigate(path);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -41,7 +42,7 @@ export default function Home() {
         subtitle="A Jain Emotional Wellness Companion for Today's Generation"
         primaryCTA={{
           text: 'Start Jain Vibes',
-          onClick: () => window.open('http://localhost:8501', '_blank'),
+          onClick: () => handleNavigate('/app'),
         }}
         secondaryCTA={{
           text: 'Explore Features',
@@ -203,7 +204,7 @@ export default function Home() {
               />
             ))}
           </div>
-          <div className="text-center">
+          <div className="text-center mt-12">
             <button
               onClick={() => handleNavigate('/30day')}
               className="button-spiritual"
@@ -228,7 +229,7 @@ export default function Home() {
             When you need immediate support, our SOS feature guides you through a five-step calming process using breathing, chanting, and grounding techniques.
           </p>
           <button
-            onClick={() => window.open('http://localhost:8501', '_blank')}
+            onClick={() => handleNavigate('/app')}
             className="button-spiritual"
           >
             Access SOS Support
@@ -247,7 +248,7 @@ export default function Home() {
             Join thousands of Gen-Z users finding peace, clarity, and spiritual balance through Jain wisdom.
           </p>
           <button
-            onClick={() => window.open('http://localhost:8501', '_blank')}
+            onClick={() => handleNavigate('/app')}
             className="px-8 py-4 rounded-xl font-medium transition-all duration-500 bg-white"
             style={{ color: 'rgb(115, 55, 55)' }}
           >
