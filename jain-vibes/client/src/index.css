@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Jain Vibes Design Tokens - Devotional Minimalism */
+  /* Primary Colors */
+  --color-sandalwood: rgb(223, 196, 158);
+  --color-soft-white: rgb(250, 250, 245);
+  --color-warm-maroon: rgb(115, 55, 55);
+  --color-devotional-gold: rgb(218, 188, 120);
+  --color-calm-grey: rgb(200, 200, 200);
+  --color-deep-stone: rgb(95, 90, 85);
+
+  --primary: rgb(223, 196, 158);
+  --primary-foreground: rgb(250, 250, 245);
+  --sidebar-primary: rgb(223, 196, 158);
+  --sidebar-primary-foreground: rgb(250, 250, 245);
+  --chart-1: rgb(218, 188, 120);
+  --chart-2: rgb(223, 196, 158);
+  --chart-3: rgb(115, 55, 55);
+  --chart-4: rgb(95, 90, 85);
+  --chart-5: rgb(200, 200, 200);
+  --radius: 1rem;
+  --background: rgb(250, 250, 245);
+  --foreground: rgb(95, 90, 85);
+  --card: rgb(255, 255, 255);
+  --card-foreground: rgb(95, 90, 85);
+  --popover: rgb(255, 255, 255);
+  --popover-foreground: rgb(95, 90, 85);
+  --secondary: rgb(223, 196, 158);
+  --secondary-foreground: rgb(95, 90, 85);
+  --muted: rgb(200, 200, 200);
+  --muted-foreground: rgb(150, 150, 150);
+  --accent: rgb(115, 55, 55);
+  --accent-foreground: rgb(250, 250, 245);
+  --destructive: rgb(220, 38, 38);
+  --destructive-foreground: rgb(250, 250, 245);
+  --border: rgb(230, 230, 225);
+  --input: rgb(240, 240, 235);
+  --ring: rgb(223, 196, 158);
+  --sidebar: rgb(250, 250, 245);
+  --sidebar-foreground: rgb(95, 90, 85);
+  --sidebar-accent: rgb(115, 55, 55);
+  --sidebar-accent-foreground: rgb(250, 250, 245);
+  --sidebar-border: rgb(230, 230, 225);
+  --sidebar-ring: rgb(223, 196, 158);
+}
+
+.dark {
+  --primary: var(--color-blue-700);
+  --primary-foreground: var(--color-blue-50);
+  --sidebar-primary: var(--color-blue-500);
+  --sidebar-primary-foreground: var(--color-blue-50);
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.85 0.005 65);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.85 0.005 65);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.85 0.005 65);
+  --secondary: oklch(0.24 0.006 286.033);
+  --secondary-foreground: oklch(0.7 0.005 65);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground:  oklch(0.92 0.005 65);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.488 0.243 264.376);
+  --chart-1: var(--color-blue-300);
+  --chart-2: var(--color-blue-500);
+  --chart-3: var(--color-blue-600);
+  --chart-4: var(--color-blue-700);
+  --chart-5: var(--color-blue-800);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.85 0.005 65);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground:  oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.488 0.243 264.376);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Poppins', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-7xl;
+  }
+  h2 {
+    @apply text-4xl md:text-5xl;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+
+  /* Jain Vibes Custom Components */
+  .hero-section {
+    @apply relative w-full h-screen flex items-center justify-center overflow-hidden;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-overlay {
+    @apply absolute inset-0 bg-black/20;
+  }
+
+  .hero-content {
+    @apply relative z-10 text-center px-4;
+  }
+
+  .card-spiritual {
+    @apply bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-500;
+    border: 1px solid rgb(230, 230, 225);
+  }
+
+  .button-spiritual {
+    @apply px-6 md:px-8 py-3 md:py-4 rounded-xl font-medium transition-all duration-500;
+    background-color: rgb(223, 196, 158);
+    color: rgb(95, 90, 85);
+  }
+
+  .button-spiritual:hover {
+    @apply shadow-lg;
+    transform: scale(1.05);
+  }
+
+  .button-secondary {
+    @apply px-6 md:px-8 py-3 md:py-4 rounded-xl font-medium transition-all duration-500;
+    background-color: transparent;
+    color: rgb(95, 90, 85);
+    border: 2px solid rgb(223, 196, 158);
+  }
+
+  .button-secondary:hover {
+    background-color: rgb(223, 196, 158);
+    color: rgb(95, 90, 85);
+  }
+
+  .section-spacing {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .divider-spiritual {
+    @apply h-1 w-16 rounded-full mx-auto;
+    background-color: rgb(223, 196, 158);
+  }
+}

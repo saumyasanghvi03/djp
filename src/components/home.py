@@ -22,31 +22,22 @@ def render_home():
     st.subheader("Core Pillars")
     col1, col2 = st.columns(2)
     with col1:
-        st.markdown("""
-        <div style='padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px;'>
-            <h4>🕊️ Jain Wisdom</h4>
-            <p style='font-size: 0.9em; color: #555;'>Timeless teachings adapted for modern mental health challenges.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div style='padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px;'>
-            <h4>⚖️ Emotional Balance</h4>
-            <p style='font-size: 0.9em; color: #555;'>Tools to navigate anxiety, stress, and relationships.</p>
-        </div>
-        """, unsafe_allow_html=True)
+        with st.container(border=True):
+            st.markdown("#### 🕊️ Jain Wisdom")
+            st.markdown("Timeless teachings adapted for modern mental health challenges.", help="Ancient wisdom for modern life")
+        
+        with st.container(border=True):
+            st.markdown("#### ⚖️ Emotional Balance")
+            st.markdown("Tools to navigate anxiety, stress, and relationships.")
+
     with col2:
-        st.markdown("""
-        <div style='padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px;'>
-            <h4>🎵 Music Therapy</h4>
-            <p style='font-size: 0.9em; color: #555;'>Curated devotional tracks to shift your energy instantly.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("""
-        <div style='padding: 15px; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 10px;'>
-            <h4>🤖 Compassionate AI</h4>
-            <p style='font-size: 0.9em; color: #555;'>An empathetic coach available 24/7 to listen and guide.</p>
-        </div>
-        """, unsafe_allow_html=True)
+        with st.container(border=True):
+            st.markdown("#### 🎵 Music Therapy")
+            st.markdown("Curated devotional tracks to shift your energy instantly.")
+            
+        with st.container(border=True):
+            st.markdown("#### 🤖 Compassionate AI")
+            st.markdown("An empathetic coach available 24/7 to listen and guide.")
 
     st.markdown("---")
 
