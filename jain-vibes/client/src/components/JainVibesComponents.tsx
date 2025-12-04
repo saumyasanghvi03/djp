@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { useLocation } from 'wouter';
 import { ChevronRight, Heart, Music, Calendar, AlertCircle, Mail } from 'lucide-react';
 
 // ============================================================================
@@ -517,6 +518,13 @@ export const Navigation: React.FC<NavigationProps> = ({
 // ============================================================================
 
 export const Footer: React.FC = () => {
+  const [, navigate] = useLocation();
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <footer
       className="py-12 md:py-16"
@@ -533,25 +541,25 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold mb-4">Features</h4>
             <ul className="space-y-2 text-sm opacity-75">
-              <li><button className="hover:opacity-100">AI Coach</button></li>
-              <li><button className="hover:opacity-100">Music Engine</button></li>
-              <li><button className="hover:opacity-100">30-Day Challenge</button></li>
+              <li><button onClick={() => handleNavigate('/coach')} className="hover:opacity-100 text-left">AI Coach</button></li>
+              <li><button onClick={() => handleNavigate('/music')} className="hover:opacity-100 text-left">Music Engine</button></li>
+              <li><button onClick={() => handleNavigate('/30day')} className="hover:opacity-100 text-left">30-Day Challenge</button></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-sm opacity-75">
-              <li><button className="hover:opacity-100">About</button></li>
-              <li><button className="hover:opacity-100">Contact</button></li>
-              <li><button className="hover:opacity-100">FAQ</button></li>
+              <li><button onClick={() => handleNavigate('/about')} className="hover:opacity-100 text-left">About</button></li>
+              <li><button onClick={() => handleNavigate('/contact')} className="hover:opacity-100 text-left">Contact</button></li>
+              <li><button onClick={() => handleNavigate('/features')} className="hover:opacity-100 text-left">FAQ</button></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Connect</h4>
             <ul className="space-y-2 text-sm opacity-75">
-              <li><button className="hover:opacity-100">Twitter</button></li>
-              <li><button className="hover:opacity-100">Instagram</button></li>
-              <li><button className="hover:opacity-100">Email</button></li>
+              <li><button onClick={() => window.open('https://twitter.com', '_blank')} className="hover:opacity-100 text-left">Twitter</button></li>
+              <li><button onClick={() => window.open('https://instagram.com', '_blank')} className="hover:opacity-100 text-left">Instagram</button></li>
+              <li><button onClick={() => window.location.href = 'mailto:hello@jainvibes.com'} className="hover:opacity-100 text-left">Email</button></li>
             </ul>
           </div>
         </div>
