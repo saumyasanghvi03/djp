@@ -189,7 +189,7 @@ with f_col2:
 with f_col3:
     if st.button("Contact", key="footer_contact"): st.session_state.active_tab = "Contact"; st.rerun()
 with f_col4:
-    st.caption("© 2024 Jain Vibes")
+    st.caption("© 2025-27 Jain Vibes")
 
 # Floating Banner (Simulated with Toast on first load)
 if "banner_shown" not in st.session_state:

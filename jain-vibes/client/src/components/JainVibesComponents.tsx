@@ -559,7 +559,7 @@ export const Footer: React.FC = () => {
           className="pt-8 border-t text-center text-sm opacity-75"
           style={{ borderColor: 'rgba(250, 250, 245, 0.1)' }}
         >
-          <p>A project by Saumya Sanghvi © 2025-2027 Jain Vibes. All rights reserved.</p>
+          <p>A project by Saumya Sanghvi © 2025-27 Jain Vibes. All rights reserved.</p>
         </div>
       </div>
     </footer>
