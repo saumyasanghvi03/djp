@@ -47,7 +47,9 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <div className="min-h-screen bg-gradient-to-br from-[#fafaf5] via-[#f0f0eb] to-[#e6e6e1] animate-pulse-slow">
+            <Router />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

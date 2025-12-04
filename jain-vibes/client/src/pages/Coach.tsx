@@ -22,41 +22,49 @@ export default function Coach() {
 
   const coachModes = [
     {
+      id: 'friendly',
       name: 'Friendly Mode',
       description: 'Warm, approachable guidance for everyday support and encouragement',
       emoji: '😊',
     },
     {
+      id: 'romantic',
       name: 'Romantic Mode',
       description: 'Gentle, compassionate support for matters of the heart',
       emoji: '💕',
     },
     {
+      id: 'soulmate',
       name: 'Soulmate Mode',
       description: 'Deep, empathetic connection and profound understanding',
       emoji: '💫',
     },
     {
+      id: 'coach',
       name: 'Coach Mode',
       description: 'Direct, motivational support for discipline and achievement',
       emoji: '🎯',
     },
     {
+      id: 'hype',
       name: 'Hype Mode',
       description: 'Energetic, uplifting support to boost confidence and excitement',
       emoji: '🔥',
     },
     {
+      id: 'anxiety',
       name: 'Anxiety Shield Mode',
       description: 'Specialized support for managing anxiety and panic',
       emoji: '🛡️',
     },
     {
+      id: 'exam',
       name: 'Exam Mode',
       description: 'Focused guidance for managing stress during important exams',
       emoji: '📚',
     },
     {
+      id: 'prevention',
       name: 'Crisis Safe Mode',
       description: 'Immediate, compassionate support during emotional emergencies',
       emoji: '🆘',
@@ -81,12 +89,20 @@ export default function Coach() {
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {coachModes.map((mode, index) => (
-              <CoachModeCard
-                key={index}
-                name={mode.name}
-                description={mode.description}
-                emoji={mode.emoji}
-              />
+              <div key={index} className="relative">
+                <CoachModeCard
+                  name={mode.name}
+                  description={mode.description}
+                  emoji={mode.emoji}
+                />
+                <button
+                  onClick={() => handleNavigate(`/app?mode=${mode.id}`)}
+                  className="absolute bottom-6 right-6 text-sm font-medium underline hover:text-gray-600 transition-colors"
+                  style={{ color: 'rgb(115, 55, 55)' }}
+                >
+                  Choose Mode
+                </button>
+              </div>
             ))}
           </div>
         </div>

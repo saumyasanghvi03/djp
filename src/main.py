@@ -70,6 +70,44 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
+    [data-testid="stSidebar"] {display: none;}
+    [data-testid="stSidebarNav"] {display: none;}
+
+    /* Glassmorphism Cards */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Custom Buttons */
+    .stButton>button {
+        background: linear-gradient(135deg, #dfc49e 0%, #dabc78 100%);
+        color: white !important;
+        border: none;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .stButton>button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 12px rgba(218, 188, 120, 0.3);
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+        font-family: 'Inter', sans-serif;
+        letter-spacing: -0.5px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -87,17 +125,27 @@ from src.components.journey import render_journey
 from src.components.about import render_about
 from src.components.contact import render_contact
 
-# Sidebar Navigation (Hidden by default, accessible via hamburger)
-with st.sidebar:
-    st.title("Jain Vibe")
-    if st.button("🏠 Home"): st.session_state.active_tab = "Home"
-    if st.button("✨ Features"): st.session_state.active_tab = "Features"
-    if st.button("💬 Coach Modes"): st.session_state.active_tab = "Coach"
-    if st.button("🎵 Music Engine"): st.session_state.active_tab = "Music"
-    if st.button("🗺️ 30-Day Challenge"): st.session_state.active_tab = "Journey"
-    if st.button("🆘 SOS"): st.session_state.active_tab = "SOS"
-    if st.button("ℹ️ About"): st.session_state.active_tab = "About"
-    if st.button("📞 Contact"): st.session_state.active_tab = "Contact"
+# Handle Query Parameters for Deep Linking
+query_params = st.query_params
+
+# Initialize last_query_mode to track changes
+if "last_query_mode" not in st.session_state:
+    st.session_state.last_query_mode = None
+
+if "mode" in query_params:
+    current_mode = query_params["mode"]
+    # Only update if the mode param has changed (navigated from React)
+    if current_mode != st.session_state.last_query_mode:
+        st.session_state.active_tab = "Coach"
+        st.session_state.active_persona = current_mode
+        st.session_state.last_query_mode = current_mode
+elif "music_mood" in query_params:
+    # Music mood doesn't need complex tracking as it's a direct filter
+    st.session_state.active_tab = "Music"
+    st.session_state.music_mood = query_params["music_mood"]
+
+# Sidebar Navigation (Hidden)
+# st.sidebar removed as per request to use website header controls
 
 # Main Content Area
 if st.session_state.active_tab == "Home":

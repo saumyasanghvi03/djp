@@ -34,7 +34,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       {/* ===== HERO SECTION ===== */}
       <HeroSection
         backgroundImage="/images/hero-home.png"
@@ -51,7 +51,7 @@ export default function Home() {
       />
 
       {/* ===== THREE-FEATURE OVERVIEW ===== */}
-      <section className="section-spacing bg-white">
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container">
           <SectionHeader
             title="Why Jain Vibes?"
@@ -81,7 +81,7 @@ export default function Home() {
       </section>
 
       {/* ===== AI COACH MODES PREVIEW ===== */}
-      <section className="section-spacing" style={{ backgroundColor: 'rgb(250, 250, 245)' }}>
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container">
           <SectionHeader
             title="Meet Your AI Coaches"
@@ -125,7 +125,7 @@ export default function Home() {
       </section>
 
       {/* ===== MUSIC ENGINE PREVIEW ===== */}
-      <section className="section-spacing bg-white">
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container">
           <SectionHeader
             title="Jain Music Engine"
@@ -187,7 +187,7 @@ export default function Home() {
       </section>
 
       {/* ===== 30-DAY CHALLENGE PREVIEW ===== */}
-      <section className="section-spacing" style={{ backgroundColor: 'rgb(250, 250, 245)' }}>
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container">
           <SectionHeader
             title="The 30-Day Jain Healing Challenge"
@@ -216,7 +216,7 @@ export default function Home() {
       </section>
 
       {/* ===== ONE-TAP SOS SECTION ===== */}
-      <section className="section-spacing bg-white">
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container text-center">
           <SectionHeader
             title="One-Tap Calm"
@@ -239,7 +239,7 @@ export default function Home() {
 
       {/* ===== CALL-TO-ACTION PANEL ===== */}
       <section
-        className="section-spacing text-center text-white"
+        className="section-spacing text-center text-white mx-4 md:mx-8 rounded-3xl my-8"
         style={{ backgroundColor: 'rgb(115, 55, 55)' }}
       >
         <div className="container">

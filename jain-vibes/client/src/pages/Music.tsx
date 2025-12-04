@@ -76,7 +76,7 @@ export default function Music() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       {/* ===== HERO SECTION ===== */}
       <HeroSection
         backgroundImage="/images/hero-music.png"
@@ -85,7 +85,7 @@ export default function Music() {
       />
 
       {/* ===== PLAYLIST GRID ===== */}
-      <section className="section-spacing bg-white">
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container">
           <SectionHeader
             title="Curated Playlists"
@@ -107,7 +107,7 @@ export default function Music() {
       </section>
 
       {/* ===== TRACK HIGHLIGHTS ===== */}
-      <section className="section-spacing" style={{ backgroundColor: 'rgb(250, 250, 245)' }}>
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container">
           <SectionHeader
             title="Featured Tracks"
@@ -143,7 +143,7 @@ export default function Music() {
       </section>
 
       {/* ===== MUSIC BENEFITS ===== */}
-      <section className="section-spacing bg-white">
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container">
           <SectionHeader
             title="Why Jain Music Heals"
@@ -197,32 +197,37 @@ export default function Music() {
       </section>
 
       {/* ===== EXTERNAL MUSIC LINKS ===== */}
-      <section className="section-spacing" style={{ backgroundColor: 'rgb(250, 250, 245)' }}>
+      <section className="section-spacing glass-panel mx-4 md:mx-8 rounded-3xl my-8">
         <div className="container text-center">
           <SectionHeader
             title="Pick Your Mood"
             subtitle="I’ll choose your music."
           />
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button className="button-spiritual">
-              Spotify
-            </button>
-            <button className="button-spiritual">
-              Apple Music
-            </button>
-            <button className="button-spiritual">
-              YouTube Music
-            </button>
-            <button className="button-spiritual">
-              Amazon Music
-            </button>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {[
+              { name: 'Morning Calm', id: 'morning_calm', emoji: '🌅' },
+              { name: 'Focus / Study', id: 'focus_lite', emoji: '🧠' },
+              { name: 'Devotion', id: 'girnar_energy', emoji: '🙏' },
+              { name: 'Energy', id: 'genz_bhajan_club', emoji: '⚡' },
+              { name: 'Grounding', id: 'adinath_ground', emoji: '🌳' },
+              { name: 'Sleep', id: 'night_calm', emoji: '🌙' },
+            ].map((mood) => (
+              <button
+                key={mood.id}
+                onClick={() => handleNavigate(`/app?music_mood=${mood.id}`)}
+                className="flex items-center justify-center gap-3 p-4 rounded-xl border border-stone-200 hover:border-stone-400 hover:bg-stone-50 transition-all group bg-white"
+              >
+                <span className="text-2xl group-hover:scale-110 transition-transform">{mood.emoji}</span>
+                <span className="font-medium text-stone-700">{mood.name}</span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ===== CLOSING CTA ===== */}
       <section
-        className="section-spacing text-center text-white"
+        className="section-spacing text-center text-white mx-4 md:mx-8 rounded-3xl my-8"
         style={{ backgroundColor: 'rgb(115, 55, 55)' }}
       >
         <div className="container">

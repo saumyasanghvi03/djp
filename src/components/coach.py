@@ -89,20 +89,26 @@ def render_coach():
             st.markdown(message["content"])
 
     # Input
-    if prompt := st.chat_input(f"Speak your heart — I’m here with calmness..."):
+    prompt = st.chat_input(f"Speak your heart — I’m here with calmness...")
+    if prompt:
         # User Message
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
+        st.rerun()
 
-        # AI Response Logic
-        with st.chat_message("assistant"):
-            message_placeholder = st.empty()
-            
-            # 1. SAFETY INTERCEPTOR (Hardcoded)
-            if selected_persona_id == "prevention":
-                time.sleep(1) # Slow down pace
-                safety_response = """**Crisis Safe Mode (India-Only Version)**
+    # Check if last message is from user and needs a response
+    if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
+        generate_ai_response(selected_persona_id, persona, lang_code)
+
+def generate_ai_response(selected_persona_id, persona, lang_code):
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
+        
+        # 1. SAFETY INTERCEPTOR (Hardcoded)
+        if selected_persona_id == "prevention":
+            time.sleep(1) # Slow down pace
+            safety_response = """**Crisis Safe Mode (India-Only Version)**
 
 If you are experiencing a mental health crisis or having thoughts of self-harm, please reach out to professional help immediately.
 
@@ -116,60 +122,60 @@ If you are experiencing a mental health crisis or having thoughts of self-harm, 
 *   **For any immediate danger:** Call 112
 
 Your safety is the highest priority. Reaching out to a trained professional can make a meaningful difference. Stay with someone you trust and seek support right away."""
-                message_placeholder.markdown(safety_response)
-                st.session_state.messages.append({"role": "assistant", "content": safety_response})
-                return
+            message_placeholder.markdown(safety_response)
+            st.session_state.messages.append({"role": "assistant", "content": safety_response})
+            return
 
-            # 2. API CALL (Perplexity)
-            api_key = os.getenv("VITE_PERPLEXITY_API_KEY") or os.getenv("PERPLEXITY_API_KEY")
-            if not api_key:
-                st.error("API Key missing. Please check .env file.")
-                return
+        # 2. API CALL (Perplexity)
+        api_key = os.getenv("VITE_PERPLEXITY_API_KEY") or os.getenv("PERPLEXITY_API_KEY")
+        if not api_key:
+            st.error("API Key missing. Please check .env file.")
+            return
 
-            try:
-                headers = {
-                    "Authorization": f"Bearer {api_key}",
-                    "Content-Type": "application/json"
-                }
-                # Prepare messages for API: Ensure it starts with 'user' (after system)
-                # Filter out leading 'assistant' messages from the history sent to API
-                api_messages = []
-                found_first_user = False
-                for m in st.session_state.messages:
-                    if m["role"] == "user":
-                        found_first_user = True
-                    if found_first_user:
-                        api_messages.append({"role": m["role"], "content": m["content"]})
+        try:
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json"
+            }
+            # Prepare messages for API: Ensure it starts with 'user' (after system)
+            # Filter out leading 'assistant' messages from the history sent to API
+            api_messages = []
+            found_first_user = False
+            for m in st.session_state.messages:
+                if m["role"] == "user":
+                    found_first_user = True
+                if found_first_user:
+                    api_messages.append({"role": m["role"], "content": m["content"]})
 
-                payload = {
-                    "model": "sonar",
-                    "messages": [
-                        {"role": "system", "content": persona["system_prompt"]},
-                        *api_messages
-                    ],
-                    "temperature": 0.7
-                }
-                
-                response = requests.post("https://api.perplexity.ai/chat/completions", json=payload, headers=headers)
-                response.raise_for_status()
-                ai_text = response.json()["choices"][0]["message"]["content"]
-                
-                message_placeholder.markdown(ai_text)
-                st.session_state.messages.append({"role": "assistant", "content": ai_text})
+            payload = {
+                "model": "sonar",
+                "messages": [
+                    {"role": "system", "content": persona["system_prompt"]},
+                    *api_messages
+                ],
+                "temperature": 0.7
+            }
+            
+            response = requests.post("https://api.perplexity.ai/chat/completions", json=payload, headers=headers)
+            response.raise_for_status()
+            ai_text = response.json()["choices"][0]["message"]["content"]
+            
+            message_placeholder.markdown(ai_text)
+            st.session_state.messages.append({"role": "assistant", "content": ai_text})
 
-                # Voice Output
-                if VOICE_AVAILABLE:
-                    try:
-                        tts = gTTS(text=ai_text, lang=lang_code, slow=False)
-                        audio_fp = io.BytesIO()
-                        tts.write_to_fp(audio_fp)
-                        audio_fp.seek(0)
-                        st.audio(audio_fp, format='audio/mp3', autoplay=True)
-                    except Exception as e:
-                        st.warning(f"Voice generation failed: {e}")
+            # Voice Output
+            if VOICE_AVAILABLE:
+                try:
+                    tts = gTTS(text=ai_text, lang=lang_code, slow=False)
+                    audio_fp = io.BytesIO()
+                    tts.write_to_fp(audio_fp)
+                    audio_fp.seek(0)
+                    st.audio(audio_fp, format='audio/mp3', autoplay=True)
+                except Exception as e:
+                    st.warning(f"Voice generation failed: {e}")
 
-            except requests.exceptions.HTTPError as err:
-                st.error(f"API Error: {err}")
-                st.code(response.text) # Show full error details
-            except Exception as e:
-                st.error(f"Connection error: {e}")
+        except requests.exceptions.HTTPError as err:
+            st.error(f"API Error: {err}")
+            st.code(response.text) # Show full error details
+        except Exception as e:
+            st.error(f"Connection error: {e}")

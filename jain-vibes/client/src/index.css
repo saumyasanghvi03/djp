@@ -250,4 +250,42 @@
     @apply h-1 w-16 rounded-full mx-auto;
     background-color: rgb(223, 196, 158);
   }
+
+  /* Glassmorphism Utilities */
+  .glass-panel {
+    @apply backdrop-blur-md bg-white/30 border border-white/20 shadow-xl;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-sm bg-white/40 border border-white/30 shadow-lg hover:bg-white/50 transition-all duration-300;
+  }
+
+  /* Animations */
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s infinite;
+  }
 }

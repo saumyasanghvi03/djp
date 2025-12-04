@@ -33,7 +33,19 @@ def render_music():
     st.write("Select your current mood or desired state, and our engine curates a specific block of Jain devotional tracks to match. No searching required—just pure vibes.")
     st.markdown("---")
 
-    for playlist in MUSIC_DATA["playlist_blocks"]:
+    # Filter Logic
+    selected_mood = st.session_state.get("music_mood")
+    
+    if selected_mood:
+        if st.button("← Show All Playlists"):
+            st.session_state.pop("music_mood", None)
+            st.rerun()
+        
+        filtered_playlists = [p for p in MUSIC_DATA["playlist_blocks"] if p["id"] == selected_mood]
+    else:
+        filtered_playlists = MUSIC_DATA["playlist_blocks"]
+
+    for playlist in filtered_playlists:
         st.subheader(playlist["title"])
         st.caption(playlist["description"])
         
